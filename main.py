@@ -23,11 +23,17 @@ def login(name, password):
 def rm(name, password):
     if users[name] == password:
         del users[name]
+    return 1
 
 @app.route("/send/<user>/<mes>")
 def send(user, mes):
     global max
     max += 1
     chat.append([max, user, mes])
+    return 1
+
+@app.route("/getchat")
+def get():
+    return chat
 
 app.run(debug=False, port=10000)
